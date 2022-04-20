@@ -1,6 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//Fixing "ReactDOM.render is no longer supported in React 18"
+/*import App from 'App';*/
+
+/*const root = ReactDOM.createRoot(document.getElementById('root'));*/
+/*root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);*/
+
+import { MainView } from './components/main-view/main-view';
+
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
 
@@ -8,9 +20,7 @@ import './index.scss';
 class MyFlixApplication extends React.Component {
     render() {
         return (
-            <div className="my-flix">
-                <div>Good morning</div>
-            </div>
+            <MainView />
         );
     }
 }
