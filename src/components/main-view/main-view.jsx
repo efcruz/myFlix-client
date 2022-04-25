@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view'
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -49,8 +50,10 @@ export class MainView extends React.Component {
         if (!user)
             return (
             <div>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} /> 
-                <button type="button">Register</button>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                <button>Register
+                    <RegistrationView onLoggedIn={user => this.onLoggedIn(user)}/>
+                </button>
             </div>
             );
                     
