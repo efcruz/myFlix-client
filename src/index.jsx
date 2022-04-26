@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Container from 'react-bootstrap/Container';
 
 //Fixing "ReactDOM.render is no longer supported in React 18"
 /*import App from 'App';*/
@@ -20,7 +21,9 @@ import './index.scss';
 class MyFlixApplication extends React.Component {
     render() {
         return (
-            <MainView />
+            <Container>
+                <MainView />
+            </Container>
         );
     }
 }
