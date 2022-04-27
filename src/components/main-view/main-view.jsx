@@ -131,5 +131,5 @@ MainView.propTypes = {
     }).isRequired,
     ImagePath: PropTypes.string.isRequired,
     Feature: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
 };
