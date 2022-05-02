@@ -1,10 +1,28 @@
-$color: steelblue;
+$color1: #4b8f8c;
+$color2: #e7745f;
+$color3: #fde635;
 
-.my-flix {
-  color: $color;
+$font-family-primary: 'Poppins', sans-serif;
+
+body {
+  padding-top: 80px;
+  font-family: $font-family-primary !important;
+  font-weight: 400 !important;
+  color: #555555 !important;
 }
 
-.poster {
-  width: auto;
-  height: 150px;
+.btn-primary {
+  color: white !important;
+  background-color: $color2 !important;
+  border-color: $color2 !important;
+}
+
+.btn-outline {
+  border-color: $color2 !important;
+  color: $color2 !important;
+}
+
+.btn-outline:hover {
+  background-color: $color2 !important;
+  color: white !important;
 }

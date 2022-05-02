@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form, Button, Card } from 'react-bootstrap';
+import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -13,51 +15,71 @@ export function RegistrationView(props) {
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input
+    <Form>
+      <Form.Group className="mb-3" controlId="formUsername">
+        <Form.Label> Username:</Form.Label>
+        <Form.Control
           type="text"
+          placeholder="enter username"
+          required
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
+          placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </label>
-      <label>
-        Email:
-        <input
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formEmail">
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
           type="email"
+          placeholder="enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-      </label>
-      <label>
-        Birthday:
-        <input
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBirthday">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
           type="date"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         />
-      </label>
-      <button type="submit" onClick={handleSubmit}>
-        Submit
-      </button>
-      <p>Already have an account?</p>
-      <button
-        onClick={() => {
-          props.onBackClick(null);
-        }}
+      </Form.Group>
+
+      <Button
+        className="btn-primary"
+        variant="primary"
+        type="submit"
+        onClick={handleSubmit}
       >
-        Login
-      </button>
-    </form>
+        Submit
+      </Button>
+      <Card className="login-card">
+        <Card.Body>
+          <Card.Text>Already have an account?</Card.Text>
+
+          <Button
+            className="btn-outline"
+            variant="outline-primary"
+            onClick={() => {
+              props.onBackClick(null);
+            }}
+          >
+            Login
+          </Button>
+        </Card.Body>
+      </Card>
+    </Form>
   );
 }
 

@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Card, CardGroup, Container } from 'react-bootstrap';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import Button from '@restart/ui/esm/Button';
+import './main-view.scss';
+/*import Button from '@restart/ui/esm/Button';*/
 
 export class MainView extends React.Component {
   constructor() {
@@ -59,57 +60,82 @@ export class MainView extends React.Component {
 
     if (register) {
       return (
-        <RegistrationView
-          onBackClick={() => {
-            this.onRegistration();
-          }}
-        ></RegistrationView>
+        <Container>
+          <Row>
+            <Col></Col>
+            <Col xs={10} md={6}>
+              <RegistrationView
+                onBackClick={() => {
+                  this.onRegistration();
+                }}
+              ></RegistrationView>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
       );
     }
 
     if (!user)
       return (
-        <div>
-          <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-          <p>Doesn't have an account?</p>
-          <Button
-            variant="link"
-            onClick={() => {
-              this.onRegistration();
-            }}
-          >
-            Register
-          </Button>
-        </div>
+        <Container>
+          <Row>
+            <Col></Col>
+            <Col xs={10} md={6}>
+              <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col></Col>
+            <Col xs={10} md={6}>
+              <Card className="login-card">
+                <Card.Body>
+                  <Card.Text>Doesn't have an account?</Card.Text>
+                  <Button
+                    className="btn-outline"
+                    variant="outline-primary"
+                    onClick={() => {
+                      this.onRegistration();
+                    }}
+                  >
+                    Sign up
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
       );
 
     if (selectedMovie) {
       return (
-        <Row className="main-view justify-content-md-center">
-          <Col md={8}>
-            <MovieView
-              movie={selectedMovie}
-              onBackClick={(newSelectedMovie) => {
-                this.setSelectedMovie(newSelectedMovie);
-              }}
-            />
-          </Col>
-        </Row>
+        <div className="main-view justify-content-md-center">
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={(newSelectedMovie) => {
+              this.setSelectedMovie(newSelectedMovie);
+            }}
+          />
+        </div>
       );
     } else {
       return (
         <Row className="main-view justify-content-md-center">
-          {movies.map((movie) => (
-            <Col md={3}>
-              <MovieCard
-                key={movie._id}
-                movieData={movie}
-                onMovieClick={(movie) => {
-                  this.setSelectedMovie(movie);
-                }}
-              />
-            </Col>
-          ))}
+          <CardGroup>
+            {movies.map((movie) => (
+              <Col md={3}>
+                <MovieCard
+                  key={movie._id}
+                  movieData={movie}
+                  onMovieClick={(movie) => {
+                    this.setSelectedMovie(movie);
+                  }}
+                />
+              </Col>
+            ))}
+          </CardGroup>
         </Row>
       );
     }
