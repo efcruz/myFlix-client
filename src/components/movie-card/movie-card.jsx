@@ -21,7 +21,7 @@ export class MovieCard extends React.Component {
         </Card.Body>
         <div>
           <Button
-            style={{ margin: '30px' }}
+            style={{ marginBottom: '30px', marginLeft: '30px' }}
             className="btn-primary"
             onClick={() => onMovieClick(movieData)}
             fuid="true"

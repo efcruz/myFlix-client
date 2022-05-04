@@ -25174,6 +25174,17 @@ class MainView extends _reactDefault.default.Component {
             register: false
         };
     }
+    //check if is there a token stored
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null && accessToken !== 'undefined') {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+    }
+    //get request to fetch movies along authorization token
     getMovies(token) {
         _axiosDefault.default.get('https://my-flix-movie-app.herokuapp.com/movies', {
             headers: {
@@ -25193,6 +25204,7 @@ class MainView extends _reactDefault.default.Component {
             selectedMovie: newSelectedMovie
         });
     }
+    //change state and store username and token
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -25207,33 +25219,40 @@ class MainView extends _reactDefault.default.Component {
             register: true
         });
     }
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
     render() {
         const { movies , selectedMovie , user , register  } = this.state;
         if (movies.lenght === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 70
+                lineNumber: 91
             },
             __self: this
         }));
         if (register) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 74
+                lineNumber: 95
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 75
+                    lineNumber: 96
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 76
+                            lineNumber: 97
                         },
                         __self: this
                     }),
@@ -25242,7 +25261,7 @@ class MainView extends _reactDefault.default.Component {
                         md: 6,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 77
+                            lineNumber: 98
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_registrationView.RegistrationView, {
@@ -25251,7 +25270,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 78
+                                lineNumber: 99
                             },
                             __self: this
                         })
@@ -25259,7 +25278,7 @@ class MainView extends _reactDefault.default.Component {
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 84
+                            lineNumber: 105
                         },
                         __self: this
                     })
@@ -25269,21 +25288,21 @@ class MainView extends _reactDefault.default.Component {
         if (!user) return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 92
+                lineNumber: 113
             },
             __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 93
+                        lineNumber: 114
                     },
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 94
+                                lineNumber: 115
                             },
                             __self: this
                         }),
@@ -25292,7 +25311,7 @@ class MainView extends _reactDefault.default.Component {
                             md: 6,
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 95
+                                lineNumber: 116
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
@@ -25300,7 +25319,7 @@ class MainView extends _reactDefault.default.Component {
                                 ,
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 96
+                                    lineNumber: 117
                                 },
                                 __self: this
                             })
@@ -25308,7 +25327,7 @@ class MainView extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 98
+                                lineNumber: 119
                             },
                             __self: this
                         })
@@ -25317,14 +25336,14 @@ class MainView extends _reactDefault.default.Component {
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 100
+                        lineNumber: 121
                     },
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 101
+                                lineNumber: 122
                             },
                             __self: this
                         }),
@@ -25333,27 +25352,27 @@ class MainView extends _reactDefault.default.Component {
                             md: 6,
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 102
+                                lineNumber: 123
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                                 className: "login-card",
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 103
+                                    lineNumber: 124
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                                     __source: {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 104
+                                        lineNumber: 125
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Text, {
                                             __source: {
                                                 fileName: "src/components/main-view/main-view.jsx",
-                                                lineNumber: 105
+                                                lineNumber: 126
                                             },
                                             __self: this,
                                             children: "Doesn't have an account?"
@@ -25366,7 +25385,7 @@ class MainView extends _reactDefault.default.Component {
                                             },
                                             __source: {
                                                 fileName: "src/components/main-view/main-view.jsx",
-                                                lineNumber: 106
+                                                lineNumber: 127
                                             },
                                             __self: this,
                                             children: "Sign up"
@@ -25378,7 +25397,7 @@ class MainView extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 118
+                                lineNumber: 139
                             },
                             __self: this
                         })
@@ -25390,7 +25409,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 125
+                lineNumber: 146
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -25400,45 +25419,70 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 126
+                    lineNumber: 147
                 },
                 __self: this
             })
         }));
-        else return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-            className: "main-view justify-content-md-center",
+        else return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 136
+                lineNumber: 157
             },
             __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
-                __source: {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 137
-                },
-                __self: this,
-                children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                        md: 3,
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                    style: {
+                        marginBottom: '30px'
+                    },
+                    className: "btn-primary",
+                    variant: "primary",
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    },
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 158
+                    },
+                    __self: this,
+                    children: "Logout"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                    className: "main-view justify-content-md-center",
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 161
+                    },
+                    __self: this,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 139
+                            lineNumber: 163
                         },
                         __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                            movieData: movie,
-                            onMovieClick: (movie1)=>{
-                                this.setSelectedMovie(movie1);
-                            },
-                            __source: {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 140
-                            },
-                            __self: this
-                        }, movie._id)
+                        children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                md: 3,
+                                __source: {
+                                    fileName: "src/components/main-view/main-view.jsx",
+                                    lineNumber: 165
+                                },
+                                __self: this,
+                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                                    movieData: movie,
+                                    onMovieClick: (movie1)=>{
+                                        this.setSelectedMovie(movie1);
+                                    },
+                                    __source: {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 166
+                                    },
+                                    __self: this
+                                }, movie._id)
+                            })
+                        )
                     })
-                )
-            })
+                })
+            ]
         }));
     }
 }
@@ -27102,7 +27146,8 @@ class MovieCard extends _reactDefault.default.Component {
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                         style: {
-                            margin: '30px'
+                            marginBottom: '30px',
+                            marginLeft: '30px'
                         },
                         className: "btn-primary",
                         onClick: ()=>onMovieClick(movieData)
@@ -40153,7 +40198,7 @@ function LoginView(props) {
             Username: username,
             Password: password
         }).then((response)=>{
-            const authData = response.authData;
+            const authData = response.data;
             props.onLoggedIn(authData);
         }).catch((e1)=>{
             console.log('no such user');

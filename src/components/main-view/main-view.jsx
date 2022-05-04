@@ -22,7 +22,19 @@ export class MainView extends React.Component {
     };
   }
 
+  //check if is there a token stored
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+
+    if (accessToken !== null && accessToken !== 'undefined') {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
  
+  //get request to fetch movies along authorization token
   getMovies(token) {
     axios
       .get('https://my-flix-movie-app.herokuapp.com/movies', {
@@ -46,6 +58,7 @@ export class MainView extends React.Component {
     });
   }
 
+  //change state and store username and token
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -61,6 +74,14 @@ export class MainView extends React.Component {
   onRegistration() {
     this.setState({
       register: true,
+    });
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
     });
   }
 
@@ -133,7 +154,12 @@ export class MainView extends React.Component {
       );
     } else {
       return (
+        <Container>
+          <Button  style={{
+            marginBottom: '30px',
+          }} className="btn-primary" variant="primary" onClick={() => { this.onLoggedOut() }}>Logout</Button>
         <Row className="main-view justify-content-md-center">
+          
           <CardGroup>
             {movies.map((movie) => (
               <Col md={3}>
@@ -148,6 +174,7 @@ export class MainView extends React.Component {
             ))}
           </CardGroup>
         </Row>
+        </Container>
       );
     }
   }
