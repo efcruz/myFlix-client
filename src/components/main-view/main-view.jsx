@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Card, CardGroup, Container } from 'react-bootstrap';
 
@@ -8,7 +9,6 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import './main-view.scss';
-/*import Button from '@restart/ui/esm/Button';*/
 
 export class MainView extends React.Component {
   constructor() {
@@ -52,11 +52,11 @@ export class MainView extends React.Component {
   }
 
 
-  setSelectedMovie(newSelectedMovie) {
+  /*setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie,
     });
-  }
+  }*/
 
   //change state and store username and token
   onLoggedIn(authData) {
@@ -71,10 +71,13 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  onRegistration() {
-    this.setState({
+  onRegistration(data) {
+    console.log(data);
+    //after registration, user is redirected to login view (_self is for open on same tab)
+    /*window.open('/', '_self');*/
+    /*this.setState({
       register: true,
-    });
+    });*/
   }
 
   onLoggedOut() {
@@ -86,7 +89,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user, register } = this.state;
+    const { movies, user, register } = this.state;
 
     if (movies.lenght === 0) return <div className="main-view" />;
 
@@ -141,7 +144,7 @@ export class MainView extends React.Component {
         </Container>
       );
 
-    if (selectedMovie) {
+    /*if (selectedMovie) {
       return (
         <div className="main-view justify-content-md-center">
           <MovieView
@@ -152,8 +155,35 @@ export class MainView extends React.Component {
           />
         </div>
       );
-    } else {
+    }*/
+    
+    else {
       return (
+        <Router>
+          <Row className="main-view justify-content-md-center">
+            <Routes>
+            <Route exact path="/" render={() => {
+              return movies.map(m => (
+                <Col md={3} key={m._id}>
+                  <MovieCard movie={m} />
+                </Col>
+              ))
+            }} />
+            <Route path="/movies/:movieId" render={({ match }) => {
+              return <Col md={8}>
+                <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+              </Col>
+            }} />
+            </Routes>
+          </Row>
+        </Router>
+            );
+        }
+    }
+}
+
+
+      /*return (
         <Container>
           <Button  style={{
             marginBottom: '30px',
@@ -176,10 +206,8 @@ export class MainView extends React.Component {
         </Row>
         </Container>
       );
-    }
-  }
-}
-
+    }*/
+ 
 MainView.propTypes = {
   movies: PropTypes.shape({
     Title: PropTypes.string.isRequired,

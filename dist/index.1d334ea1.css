@@ -1,0 +1,54 @@
+
+
+.card-movie-card {
+  height: 750px;
+  margin-bottom: 30px;
+  justify-content: "space-between";
+  align-content: center;
+}
+
+.card-title {
+  font-weight: 700 !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-weight: 400 !important;
+}
+.label {
+  font-weight: 700;
+}
+
+.poster {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 30px;
+}
+.login-card {
+  margin-top: 30px;
+}
+body {
+  padding-top: 80px;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  color: #555555 !important;
+}
+
+.btn-primary {
+  color: white !important;
+  background-color: #e7745f !important;
+  border-color: #e7745f !important;
+}
+
+.btn-outline {
+  border-color: #e7745f !important;
+  color: #e7745f !important;
+}
+
+.btn-outline:hover {
+  background-color: #e7745f !important;
+  color: white !important;
+}
+/*# sourceMappingURL=index.1d334ea1.css.map */
