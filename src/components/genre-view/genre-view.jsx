@@ -2,30 +2,19 @@ import React, { useState } from 'react';
 import { Row, Col, Button, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-import './director-view.scss';
+import './genre-view.scss';
 
-export function DirectorView(props) {
+export function GenreView(props) {
 
-    const { director, onBackClick } = useState('');
+    const { genre, onBackClick } = useState('');
 
     return (
         <Row>
             <Col>
-                <Image
-                    className="poster"
-                    src={director.ImagePath}
-                    crossOrigin="anonymous"
-                />
-            </Col>
-            <Col>
                 <div>
-                    <span className="label">{director.Name}</span>
+                    <span className="label">{genre.Name}</span>
                     <hr></hr>
-                    <span className="label">Born: </span>
-                    <br></br>
-                    <span className="value">{director.Birth} </span>
-                    <br></br>
-                    <span className="label">{director.Bio}</span>
+                    <span className="value">{genre.Description} </span>
                 </div>
                 <div className="btn-box">
                     <Button
@@ -48,11 +37,9 @@ export function DirectorView(props) {
     )
 }
 
-DirectorView.propTypes = {
-      Director: PropTypes.shape({
+GenreView.propTypes = {
+      Genre: PropTypes.shape({
         Name: PropTypes.string.isRequired,
-        Bio: PropTypes.string.isRequired,
-        Birth: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired
+        Description: PropTypes.string.isRequired,
       }).isRequired
   };

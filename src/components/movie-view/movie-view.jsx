@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-view.scss';
 import { Row, Col, Button, Image } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
+
     return (
       <Row>
         <Col>
@@ -49,7 +51,7 @@ export class MovieView extends React.Component {
               className="btn-primary"
               variant="primary"
               onClick={() => {
-                onBackClick(null);
+                onBackClick();
               }}
             >
               Back
@@ -75,6 +77,5 @@ MovieView.propTypes = {
       Birth: PropTypes.string.isRequired,
     }).isRequired,
     ImagePath: PropTypes.string.isRequired,
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
+  }).isRequired
 };

@@ -16,21 +16,78 @@ export function RegistrationView(props) {
   const [birthdayErr, setBirthdayErr] = useState('');
 
   //validate user inputs
+  const getUsernameError = () => {
+    if (!username) {
+      return "Username required"
+    } else if (username.length < 5) {
+      return "Username must be 5 characters long"
+    } else {
+      return null
+    }
+  }
+  
+  const getPasswordError = () => {
+    if (!password) {
+      return "Password required"
+    } else if (password.length < 5) {
+      return "Password must be 5 characters long"
+    } else {
+      return null
+    }
+  }
+
+  const getEmailError = () => {
+    if(!email) {
+      return "Email required"
+    } else if ((email.indexOf('@') === -1)) {
+      return "Invalid email"
+    } else {
+      return null
+    }
+  }
+
+  const getBirthdayError = () => {
+    const regexddmmyyyy = /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
+    if(!birthday) {
+      return "Birthday required"
+    } else if (!regexddmmyyyy.test(birthday)){
+      return "Invalid date"
+    } else  {
+      return null
+    }
+  }
+
+  const validate = () => {
+    
+    let usernameError = getUsernameError();
+    let passwordError = getPasswordError();
+    let emailError = getEmailError();
+    let birthdayError = getBirthdayError();
+
+    setUsernameErr(usernameError);
+    setPasswordErr(passwordError);
+    setEmailErr(emailError);
+    setBirthdayErr(birthdayError);
+
+    return !usernameError && !passwordError && !emailError && !birthdayError
+  };
+
+  /*
   const validate = () => {
     let isReq = true;
-    const regexssmmyyyy = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+    const regexddmmyyyy = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
     if(!username){
       setUsernameErr('Username Required');
       isReq = false;
-    } else if (username.length < 2){
-      setUsernameErr('Username must be 2 characters long');
+    } else if (username.length < 5){
+      setUsernameErr('Username must be 5 characters long');
       isReq = false;
     }
     if(!password){
       setPasswordErr('Password required');
       isReq = false;
-    } else if (password.length < 6) {
-      setPasswordErr('Password must be 6 characters long');
+    } else if (password.length < 5) {
+      setPasswordErr('Password must be 5 characters long');
       isReq = false;
     }
     if(!email){
@@ -43,17 +100,18 @@ export function RegistrationView(props) {
     if(!birthday){
       setBirthdayErr('Birthday Required');
       isReq = false;
-    } else if (!regexssmmyyyy.test(birthday)) {
+    } else if (!regexddmmyyyy.test(birthday)) {
       setBirthdayErr('Invalid Date');
       isReq = false;
     }
 
     return isReq;
-  }
+  }*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isReq = validate();
+
+  const isReq = validate();
     if(isReq)
 
     axios
