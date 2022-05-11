@@ -1,17 +1,18 @@
 import React from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+import { Link, Image } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './movie-view.scss';
-import { Row, Col, Button, Image } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 export class MovieView extends React.Component {
+  
   render() {
     const { movie, onBackClick } = this.props;
 
     return (
       <Row>
         <Col>
-          <Image
+          <img
             className="poster"
             src={movie.ImagePath}
             crossOrigin="anonymous"
@@ -42,6 +43,13 @@ export class MovieView extends React.Component {
             <span className="value">{movie.Director.Name}</span>
           </div>
           <div className="btn-box">
+            <Link to={`/director/${movie.Director.Name}`}>
+              <Button variant="link">Director</Button>
+            </Link>
+
+            <Link to={`/genre/${movie.Genre.Name}`}>
+              <Button variant="link">Genre</Button>
+            </Link>
             <Button
               style={{
                 marginLeft: '0px',
@@ -76,6 +84,6 @@ MovieView.propTypes = {
       Bio: PropTypes.string.isRequired,
       Birth: PropTypes.string.isRequired,
     }).isRequired,
-    ImagePath: PropTypes.string.isRequired,
-  }).isRequired
+    ImagePath: PropTypes.string.isRequired
+  })
 };

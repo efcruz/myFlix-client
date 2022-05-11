@@ -13,7 +13,6 @@ export function RegistrationView(props) {
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
   const [emailErr, setEmailErr] = useState('');
-  const [birthdayErr, setBirthdayErr] = useState('');
 
   //validate user inputs
   const getUsernameError = () => {
@@ -46,67 +45,19 @@ export function RegistrationView(props) {
     }
   }
 
-  const getBirthdayError = () => {
-    const regexddmmyyyy = /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
-    if(!birthday) {
-      return "Birthday required"
-    } else if (!regexddmmyyyy.test(birthday)){
-      return "Invalid date"
-    } else  {
-      return null
-    }
-  }
-
   const validate = () => {
     
     let usernameError = getUsernameError();
     let passwordError = getPasswordError();
     let emailError = getEmailError();
-    let birthdayError = getBirthdayError();
 
     setUsernameErr(usernameError);
     setPasswordErr(passwordError);
     setEmailErr(emailError);
-    setBirthdayErr(birthdayError);
+ 
 
-    return !usernameError && !passwordError && !emailError && !birthdayError
+    return !usernameError && !passwordError && !emailError
   };
-
-  /*
-  const validate = () => {
-    let isReq = true;
-    const regexddmmyyyy = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-    if(!username){
-      setUsernameErr('Username Required');
-      isReq = false;
-    } else if (username.length < 5){
-      setUsernameErr('Username must be 5 characters long');
-      isReq = false;
-    }
-    if(!password){
-      setPasswordErr('Password required');
-      isReq = false;
-    } else if (password.length < 5) {
-      setPasswordErr('Password must be 5 characters long');
-      isReq = false;
-    }
-    if(!email){
-      setEmailErr('Email Required');
-      isReq = false;
-    } else if (email.indexOf('@') === -1) {
-      setEmailErr('Invalid Email');
-      isReq = false;
-    }
-    if(!birthday){
-      setBirthdayErr('Birthday Required');
-      isReq = false;
-    } else if (!regexddmmyyyy.test(birthday)) {
-      setBirthdayErr('Invalid Date');
-      isReq = false;
-    }
-
-    return isReq;
-  }*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -124,7 +75,8 @@ export function RegistrationView(props) {
       .then(response => {
         //take the response data received and pass as argument to onLoggedin funcion (whose gonna write in console)
         const data = response.data;
-        props.onRegistration(data);
+        console.log(data);
+        window.open('/', '_self');
       })
       .catch((response) => {
         console.error(response);
@@ -171,7 +123,7 @@ export function RegistrationView(props) {
           type="date"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
-        />{birthdayErr && <p>{birthdayErr}</p>}
+        />
       </Form.Group>
 
       <Button
@@ -182,29 +134,15 @@ export function RegistrationView(props) {
       >
         Submit
       </Button>
-      <Card className="login-card">
-        <Card.Body>
-          <Card.Text>Already have an account?</Card.Text>
-
-          <Button
-            className="btn-outline"
-            variant="outline-primary"
-            onClick={() => {
-              props.onBackClick(null);
-            }}
-          >
-            Login
-          </Button>
-        </Card.Body>
-      </Card>
     </Form>
   );
 }
 
 RegistrationView.propTypes = {
-  username: PropTypes.string,
-  password: PropTypes.string,
-  email: PropTypes.string,
-  birthday: PropTypes.string,
-  onBackClick: PropTypes.func.isRequired,
+  register: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthday: PropTypes.instanceOf(Date).isRequired,
+  }),
 };

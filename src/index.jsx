@@ -23,17 +23,6 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <Container>
-        <Navbar fluid="true" variant="dark" fixed="top" bg="dark">
-          <Container>
-            <Navbar.Brand href="#home">myFlix</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#features">Profile</Nav.Link>
-              <Nav.Link href="#pricing">About</Nav.Link>
-            </Nav>
-          </Container>
-        </Navbar>
-        <br></br>
         <MainView />
       </Container>
     );

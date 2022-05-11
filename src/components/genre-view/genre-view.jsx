@@ -4,16 +4,21 @@ import PropTypes from 'prop-types';
 
 import './genre-view.scss';
 
-export function GenreView(props) {
+export class GenreView extends React.Component{
+  
 
-    const { genre, onBackClick } = useState('');
+    render() {
+
+        const{ genre, onBackClick} = this.props;
 
     return (
         <Row>
             <Col>
                 <div>
+              
                     <span className="label">{genre.Name}</span>
                     <hr></hr>
+                 
                     <span className="value">{genre.Description} </span>
                 </div>
                 <div className="btn-box">
@@ -35,6 +40,7 @@ export function GenreView(props) {
             </Col>
         </Row>
     )
+}
 }
 
 GenreView.propTypes = {
