@@ -11,6 +11,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 import { NavbarView } from '../navbar/navbar-view';
 import './main-view.scss';
 
@@ -100,15 +101,15 @@ export class MainView extends React.Component {
                 )
               }} />
 
-<Route path="/movies/:movieId" render={({ match, history }) => {
-            if(!user) return  <Col>
-            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-           </Col>
-            if(movies.length === 0) return <div className="main-view" />;
-            return <Col md={8}>
-              <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+            <Route path="/movies/:movieId" render={({ match, history }) => {
+                if(!user) return  <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
-          }} />
+                if(movies.length === 0) return <div className="main-view" />;
+                return <Col md={8}>
+                  <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                  </Col>
+              }} />
 
                <Route path="/director/:name" render={( { match, history } ) => {
                  if (!user)
@@ -137,6 +138,27 @@ export class MainView extends React.Component {
                       onBackClick={() => history.goBack()}/>
                   </Col> );
               }} />
+
+              <Route path={`/users/${user}`} render={({ match, history }) => {
+                if (!user)
+                  return (
+                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                  );
+                  
+                if (movies.length === 0) return <div className="main-view" />;
+          
+                  return (
+                    <Col md={8}>
+                      <ProfileView
+                        history={history}
+                        movies={movies}
+                        user={user}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
+                  );
+                }}
+              />
 
          
 

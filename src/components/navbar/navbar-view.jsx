@@ -32,7 +32,7 @@ export function NavbarView({user}) {
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
                       {isAuth() && (
-                          <Nav.Link as={Link} to='/users/username' >{user}</Nav.Link>
+                          <Nav.Link as={Link} to={`/users/${user}`} >{user}</Nav.Link>
                       )}
                       {isAuth() && (
                         <Button variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>
