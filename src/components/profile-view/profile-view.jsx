@@ -54,28 +54,32 @@ export class ProfileView extends React.Component {
 
     editProfile = (e) => {
         e.preventDefault();
+        debugger;
         const user = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-
+debugger;
         axios.put(`https://my-flix-movie-app.herokuapp.com/users/${user}`,
         {
-          username: this.state.username,
-          password: this.state.password,
-          email: this.state.email,
-          birthday: this.state.birthday,
+          Username: this.state.username,
+          Password: this.state.password,
+          Email: this.state.email,
+          Birthday: this.state.birthday,
         },
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then((response) => {
+            debugger;
             this.setState({
-                username: response.data.username,
-                password: response.data.password,
-                email: response.data.email,
-                birthday: response.data.birthday,
+                username: response.data.Username,
+                password: response.data.Password,
+                email: response.data.Email,
+                birthday: response.data.Birthday,
             });
             localStorage.setItem("user", this.state.username);
             alert("Profile updadted sucessfully");
-            window.open("/profile", "_self");
+        })
+        .catch((e) => {
+            console.log(e)
         });
     }
 
@@ -136,10 +140,12 @@ export class ProfileView extends React.Component {
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then ((response) => {
+            debugger;
             console.log(response);
             this.updateLocalMovies(response.data.FavoriteMovies)
         })
         .catch((e) => {
+            debugger;
             console.log(e)
         });
     }
@@ -161,7 +167,7 @@ export class ProfileView extends React.Component {
                     <p>Email: {this.state.email}</p>
                     </Col>
                     <Form>
-                        <p>Update your prfile</p>
+                        <p>Update your profile</p>
                         <Form.Group className="mb-3" controlId="formUsername">
                             <Form.Label> Username:</Form.Label>
                                 <Form.Control
@@ -169,7 +175,7 @@ export class ProfileView extends React.Component {
                                     
                                     required
                                     
-                                    onChange={(e) => setUsername(e.target.value)}
+                                    onChange={(e) => this.setUsername(e.target.value)}
                                 />
                         </Form.Group>
 
@@ -179,7 +185,7 @@ export class ProfileView extends React.Component {
                                     type="password"
                                    
                                    
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => this.setPassword(e.target.value)}
                                 />
                         </Form.Group>
 
@@ -189,7 +195,7 @@ export class ProfileView extends React.Component {
                                     type="email"
                                  
                                     
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => this.setEmail(e.target.value)}
                                 />
                         </Form.Group>
 
@@ -199,7 +205,7 @@ export class ProfileView extends React.Component {
                                     type="date"
                                   
                                    
-                                    onChange={(e) => setBirthday(e.target.value)}
+                                    onChange={(e) => this.setBirthday(e.target.value)}
                                 />
                         </Form.Group>
 
