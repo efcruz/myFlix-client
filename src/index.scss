@@ -5,10 +5,12 @@ $color3: #fde635;
 $font-family-primary: 'Poppins', sans-serif;
 
 body {
-  padding-top: 80px;
+ 
+  padding-top: 6rem;
   font-family: $font-family-primary !important;
   font-weight: 400 !important;
   color: #555555 !important;
+  box-sizing: border-box;
 }
 
 .btn-primary {
@@ -17,12 +19,4 @@ body {
   border-color: $color2 !important;
 }
 
-.btn-outline {
-  border-color: $color2 !important;
-  color: $color2 !important;
-}
 
-.btn-outline:hover {
-  background-color: $color2 !important;
-  color: white !important;
-}

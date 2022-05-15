@@ -13,45 +13,45 @@ export class DirectorView extends React.Component{
     return (
         <>
         <Row>
-        <Col>
-          <img
-            className="poster"
-            src={director.ImageUrl}
-            crossOrigin="anonymous"
-          />
-        </Col>
+            <Col>
+            <img
+                className="poster"
+                src={director.ImageUrl}
+                crossOrigin="anonymous"
+            />
+            </Col>
         </Row>
 
         <Row>
-        <Col med={4} className="director-view bg-light text-black" style={{marginTop: 150}}>
-        <div className="director-name" />
-        <span className="label">Director: </span>
-        <span className="value">{director.Name}</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col med={4} className="director-view bg-light text-black">
-        <div className="director-name" />
-        <span className="label">About: </span>
-        <span className="value">{director.Bio}</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col med={4} className="director-view bg-light text-black">
-        <div className="director-name" />
-        <span className="label">Born: </span>
-        <span className="value">{director.Birth}</span>
-        </Col>
-      </Row>
+            <Col med={4} className="director-view bg-light text-black" style={{marginTop: 150}}>
+            <div className="director-name" />
+            <span className="label">Director: </span>
+            <span className="value">{director.Name}</span>
+            </Col>
+        </Row>
+        <Row>
+            <Col med={4} className="director-view bg-light text-black">
+            <div className="director-name" />
+            <span className="label">About: </span>
+            <span className="value">{director.Bio}</span>
+            </Col>
+        </Row>
+        <Row>
+            <Col med={4} className="director-view bg-light text-black">
+            <div className="director-name" />
+            <span className="label">Born: </span>
+            <span className="value">{director.Birth}</span>
+            </Col>
+        </Row>
      
-      <Row>
-        <Col>
+        <Row>
+            <Col>
         
-          <Button  onClick={() => { onBackClick(null); } } variant="danger" style={{marginTop: 50, }}>Back</Button>
+                <Button  onClick={() => { onBackClick(null); } } variant="danger" style={{marginTop: 50, }}>Back</Button>
           
-        </Col>
-      </Row>
-      </>
+            </Col>
+        </Row>
+        </>
     )
     }
 }

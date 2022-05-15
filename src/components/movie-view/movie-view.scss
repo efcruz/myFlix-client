@@ -1,9 +1,71 @@
-.label {
+$color1: #4b8f8c;
+$color2: #e7745f;
+$color3: #fde635;
+
+
+.movie-view-container {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+/*.movie-view-text-container {
+  background-color: deeppink;
+}*/
+
+/*.movie-view-poster-container {
+background-color: yellow;
+}*/
+
+.movie-view-poster {
+  max-width: 20rem;
+  height: auto;
+  margin: 0rem;
+}
+
+//favorite button
+.btn-outline {
+  border-color: none !important;
+  color: $color2 !important;
+  text-decoration: none !important;
+  margin: none;
+}
+
+.btn-outline:hover {
+  background-color: none !important;
+  color: none !important;
+  outline:none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  border-color: none !important;
+}
+
+.movie-title {
+  display:flex;
+  justify-content: space-between;
+}
+
+
+h1 {
+  font-size: 2rem;
   font-weight: 700;
 }
 
-.poster {
-  max-width: 300px;
-  height: auto;
-  margin-bottom: 30px;
+.label {
+  font-weight: 700;
+  
 }
+
+.movie-description {
+  display: flex;
+  padding: 0.2rem;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  
+}
+
+.value-link {
+  color: $color2 !important;
+}
+

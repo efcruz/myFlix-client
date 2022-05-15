@@ -73,8 +73,8 @@ export class MainView extends React.Component {
       return (
         <Router>
           <NavbarView user={user} />
-          <Container>
-            <Row className="main-view justify-content-md-center">
+          <Container className="main-view-container">
+            <Row>
               <Route exact path="/" render={() => {
                 //If there is no user, the LoginView is rendered. 
                 //If there is a user logged in, the user details are passed as a prop to the LoginView
@@ -106,7 +106,7 @@ export class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
               </Col>
                 if(movies.length === 0) return <div className="main-view" />;
-                return <Col md={8}>
+                return <Col>
                   <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
                   </Col>
               }} />

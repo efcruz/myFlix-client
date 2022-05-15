@@ -1,9 +1,11 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
+import { Star, StarFill } from 'react-bootstrap-icons';
 import { Link, Image } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './movie-view.scss';
 import axios from 'axios';
+
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
   constructor(props) {
@@ -111,65 +113,60 @@ export class MovieView extends React.Component {
     let isFav = userFav.includes(movieId);
     
     return (
-      <Row>
-        <Col>
-          <img
-            className="poster"
-            src={movie.ImagePath}
-            crossOrigin="anonymous"
-          />
-        </Col>
+      <Container>
+        <Row className='movie-view-container'>
+          <Col className='movie-view-poster-container'>
+          
+              <img
+                className="movie-view-poster"
+                src={movie.ImagePath}
+                crossOrigin="anonymous"
+              />
+          </Col>
 
-        <Col
-          xs={12}
-          md={8}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            marginBottom: '30px',
-          }}
-        >
-          <div>
-            <span className="label">{movie.Title}</span>
-            <hr></hr>
-            <span className="label">Description: </span>
-            <br></br>
-            <span className="value">{movie.Description}</span>
-            <br></br>
-            <span className="label">Genre: </span>
-            <Link className="value" to={`/genre/${movie.Genre.Name}`}>{movie.Genre.Name}</Link>
-            <br></br>
-            <span className="label">Director: </span>
-            <Link className="value" to={`/director/${movie.Director.Name}`} >{movie.Director.Name}</Link>
-          </div>
-          <div className="btn-box">
-           
-            <Button
-              style={{
-                marginLeft: '0px',
-                marginBottom: '0px',
-                marginTop: '30px',
-              }}
-              className="btn-primary"
-              variant="primary"
-              onClick={() => {
-                onBackClick();
-              }}
-            >
-              Back
-            </Button>
-            <Button
-                variant="primary"
-                className="custom-btn"
-                onClick={isFav? this.removeFav: this.addFav}
-              >
-                {isFav? 'Remove from favorite' : 'Add to favorite'}
-              </Button>
-            
-            </div>
-        </Col>
-      </Row>
+          <Col md={8} className='movie-view-text-container'>
+              <div className='movie-title'>
+                  <span className="label"><h1>{movie.Title}</h1></span>
+                  <Button  variant='outline' type="button"
+                        onClick={isFav? this.removeFav: this.addFav}
+                      >
+                        {isFav? <h2><StarFill  /></h2> : <h2><Star  /></h2>}
+                  </Button>
+              </div>
+              <hr></hr>
+              <div className='movie-description'>
+                <div>
+                  <span className="label">Description: </span>
+                  <br></br>
+                  <span className="value">{movie.Description}</span>
+                  <br></br>
+                  <span className="label">Genre: </span>
+                  <Link className="value-link" to={`/genre/${movie.Genre.Name}`}>{movie.Genre.Name}</Link>
+                  <br></br>
+                  <span className="label">Director: </span>
+                  <Link className="value-link" to={`/director/${movie.Director.Name}`} >{movie.Director.Name}</Link>
+                </div>
+                <div>
+                  <Button
+                    style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '2'
+                      
+                    }}
+                    className="btn-primary"
+                    variant="primary"
+                    onClick={() => {
+                      onBackClick();
+                    }}
+                  >
+                    Back
+                  </Button>
+                </div>
+              </div>
+          </Col>
+        </Row>  
+      </Container>
     );
   }
 }
