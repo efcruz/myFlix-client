@@ -94,7 +94,7 @@ export function RegistrationView(props) {
           required
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />{usernameErr && <p>{usernameErr}</p>}
+        />{usernameErr && <p className='error-message'>{usernameErr}</p>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formPassword">
@@ -104,7 +104,7 @@ export function RegistrationView(props) {
           placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />{passwordErr && <p>{passwordErr}</p>}
+        />{passwordErr && <p className='error-message'>{passwordErr}</p>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formEmail">
@@ -114,7 +114,7 @@ export function RegistrationView(props) {
           placeholder="enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />{emailErr && <p>{emailErr}</p>}
+        />{emailErr && <p className='error-message'>{emailErr}</p>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBirthday">

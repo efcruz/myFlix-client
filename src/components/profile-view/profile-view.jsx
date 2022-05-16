@@ -13,6 +13,8 @@ import {
   Button,
 } from "react-bootstrap";
 
+import './profile-view.scss';
+
 export class ProfileView extends React.Component {
     constructor() {
         super();
@@ -160,14 +162,32 @@ debugger;
         }
         return (
             <Container>
-                <Row>
-                    <Col>Profile</Col>
-                    <Col>
-                    <p>Username: {this.state.username}</p>
-                    <p>Email: {this.state.email}</p>
+                <Row className='profile-view-container'>
+
+                    <Col xs={12}> <span className="label"><h1>Profile</h1></span></Col>
+                    <hr></hr>
+                    
+                    <Col className="details-box">
+                        <div>
+                           <p><span className="label">Username:</span> {this.state.username}</p>
+                            <p><span className="label">Email:</span> {this.state.email}</p>
+                        </div>
+                        <div>
+                        <Button
+                              style={{
+                                position: 'absolute',
+                                bottom: '0',
+                                left: '2'
+                                  
+                                }}
+                        >
+                            Back
+                        </Button>
+                        </div>
                     </Col>
+                    <Col className="form-box">
                     <Form>
-                        <p>Update your profile</p>
+                        <p className="label">Update your profile</p>
                         <Form.Group className="mb-3" controlId="formUsername">
                             <Form.Label> Username:</Form.Label>
                                 <Form.Control
@@ -208,41 +228,45 @@ debugger;
                                     onChange={(e) => this.setBirthday(e.target.value)}
                                 />
                         </Form.Group>
-
-                        <Button
-                            className="btn-primary"
-                            variant="primary"
-                            type="submit"
-                            onClick={this.editProfile}
-                        >
-                            Update Profile
-                        </Button>
-                        <Button
-                            className="btn-primary"
-                            variant="primary"
-                            type="submit"
-                            onClick={this.deleteProfile}
-                        >
-                            Delete Profile
-                        </Button>
-                        <Button
-                            style={{
-                                marginLeft: '0px',
-                                marginBottom: '0px',
-                                marginTop: '30px',
-                            }}
-                            className="btn-primary"
-                            variant="primary"
-                            onClick={() => {
-                                onBackClick();
-                            }}
-                        >
-                            Back
-                        </Button>
                         </Form>
+                     
+                            <Button
+                            
+                                className="btn-primary"
+                                variant="primary"
+                                type="submit"
+                                onClick={this.editProfile}
+                            >
+                                Update
+                            </Button>
+                  
+                        
+                       
+                        </Col>
+                        <Col className="delete-button-box">
+                        <Button
+                        style={{
+                            position: 'absolute',
+                            to: '0',
+                            right: '0'
+                              
+                            }}
+                       
+                                className="btn-danger"
+                                variant="danger"
+                                type="submit"
+                                onClick={this.deleteProfile}
+                            >
+                                Delete Profile
+                            </Button>
+                            </Col>
+                        
                 </Row>
+                <br></br>
+                <br></br>
+                <p className="label" >Your favorites movies</p>
                
-                <Card>
+                <Card className="favorites-container">
                     <Card.Body>
                         {favoriteMovies.length === 0 && (
                         <div className="titles h1 text-center">
@@ -258,7 +282,7 @@ debugger;
                             </p>
                         </div>
                         )}
-                        <Row className="favorite-movies d-flex justify-content-around">
+                        <Row className="favorites-cards-container">
                         {favoriteMovies.length > 0 &&
                             movies.map((movie) => {
                             if (
@@ -266,20 +290,28 @@ debugger;
                                 favoriteMovies.find((fav) => fav === movie._id)
                             ) {
                                 return (
-                                <Card className="favorite-movie m-2" key={movie._id}>
-                                    <Card.Img src={movie.ImagePath} crossOrigin="anonymous"/>
-                                    <Card.Body>
-                                    <Card.Title className="h1 titles">
-                                        {movie.Title}
-                                    </Card.Title>
-                                    <Button
-                                        className="custom-btn"
-                                        onClick={()=>this.removeFav(movie)}
-                                    >
-                                        Remove from List
-                                    </Button>
+                                
+                                <Card className="profile-favorite-card" key={movie._id}>
+                                    <Card.Img 
+                                        className="favorite-card-poster"
+                                        variant="top" 
+                                        src={movie.ImagePath} 
+                                        crossOrigin="anonymous"
+                                    />
+                                    
+                                    <Card.Body className="favorites-card-body">
+                                        <Card.Title>
+                                            {movie.Title}
+                                        </Card.Title>
+                                        <Button
+                                            variant="primary"
+                                            onClick={()=>this.removeFav(movie)}
+                                            >
+                                            Remove from List
+                                        </Button>
                                     </Card.Body>
                                 </Card>
+                               
                                 );
                             }
                             })}

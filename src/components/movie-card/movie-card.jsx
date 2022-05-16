@@ -25,7 +25,7 @@ export class MovieCard extends React.Component {
             <Button
               style={{ marginBottom: '30px', marginLeft: '30px' }}
               className="btn-primary"
-              fuid="true"
+              fluid="true"
               variant="link">
               Open
             </Button>
