@@ -115,7 +115,7 @@ export class MovieView extends React.Component {
     return (
       <Container>
         <Row className='movie-view-container'>
-          <Col className='movie-view-poster-container'>
+          <Col xs={12} md={4} className='movie-view-poster-container'>
           
               <img
                 className="movie-view-poster"
@@ -124,7 +124,7 @@ export class MovieView extends React.Component {
               />
           </Col>
 
-          <Col md={8} className='movie-view-text-container'>
+          <Col className='movie-view-text-container'>
               <div className='movie-title'>
                   <span className="label"><h1>{movie.Title}</h1></span>
                   <Button  variant='outline' type="button"
@@ -134,7 +134,7 @@ export class MovieView extends React.Component {
                   </Button>
               </div>
               <hr></hr>
-              <div className='movie-description'>
+              <Col className='movie-description'>
                 <div>
                   <span className="label">Description: </span>
                   <br></br>
@@ -146,13 +146,10 @@ export class MovieView extends React.Component {
                   <span className="label">Director: </span>
                   <Link className="value-link" to={`/director/${movie.Director.Name}`} >{movie.Director.Name}</Link>
                 </div>
-                <div>
+                <div className='movie-view-back-button'>
                   <Button
                     style={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '2'
-                      
+                      marginTop: '2rem'
                     }}
                     className="btn-primary"
                     variant="primary"
@@ -163,7 +160,7 @@ export class MovieView extends React.Component {
                     Back
                   </Button>
                 </div>
-              </div>
+              </Col>
           </Col>
         </Row>  
       </Container>

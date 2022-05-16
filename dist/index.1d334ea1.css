@@ -26,13 +26,15 @@
 }
 
 /*.movie-view-text-container {
-  background-color: deeppink;
+  margin-bottom: 2rem !important;
 }*/
-/*.movie-view-poster-container {
-background-color: yellow;
-}*/
+.movie-view-poster-container {
+  margin-bottom: 2rem !important;
+}
+
 .movie-view-poster {
-  max-width: 20rem;
+  max-width: 100%;
+  min-width: 10rem;
   height: auto;
   margin: 0rem;
 }
@@ -68,17 +70,36 @@ h1 {
 }
 
 .movie-description {
-  display: flex;
-  padding: 0.2rem;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
 .value-link {
   color: #e7745f !important;
 }
+.director-view-poster {
+  max-width: 100%;
+  min-width: 10rem;
+  height: auto;
+  margin: 0rem;
+}
 
+.director-view-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.director-view-poster-container {
+  margin: 0.5rem;
+}
+
+.director-view-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
 
 .profile-view-container {
   display: flex;
@@ -122,7 +143,9 @@ h1 {
   flex-direction: column;
   justify-content: flex-end !important;
 }
-
+.link {
+  color: #e7745f !important;
+}
 /*.main-view-container {
   background-color: rgb(91, 50, 204);
 }*/

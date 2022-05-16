@@ -35,7 +35,7 @@ export function NavbarView({user}) {
                           <Nav.Link as={Link} to={`/users/${user}`} >{user}</Nav.Link>
                       )}
                       {isAuth() && (
-                        <Button variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>
+                        <Button className="link" variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>
                       )}
                       {!isAuth() && (
                           <Nav.Link href="/">Sign-in</Nav.Link>

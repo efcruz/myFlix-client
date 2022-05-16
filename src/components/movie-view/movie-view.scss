@@ -10,17 +10,19 @@ $color3: #fde635;
 }
 
 /*.movie-view-text-container {
-  background-color: deeppink;
+  margin-bottom: 2rem !important;
 }*/
 
-/*.movie-view-poster-container {
-background-color: yellow;
-}*/
+.movie-view-poster-container {
+  margin-bottom: 2rem !important;
+}
 
 .movie-view-poster {
-  max-width: 20rem;
-  height: auto;
-  margin: 0rem;
+    max-width: 100%;
+    min-width: 10rem;
+    height: auto;
+    margin: 0rem;
+    
 }
 
 //favorite button
@@ -57,13 +59,12 @@ h1 {
 }
 
 .movie-description {
-  display: flex;
-  padding: 0.2rem;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
-  
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
+
+
 
 .value-link {
   color: $color2 !important;

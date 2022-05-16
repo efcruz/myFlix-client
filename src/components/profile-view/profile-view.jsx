@@ -265,7 +265,7 @@ debugger;
                 </Row>
                 <br></br>
                 <br></br>
-                <p className="label" >Your favorites movies</p>
+                <p className="label" >Your favorite movies</p>
                
                 <Card className="favorites-container">
                     <Card.Body>
