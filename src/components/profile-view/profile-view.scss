@@ -1,0 +1,54 @@
+$color1: #4b8f8c;
+$color2: #e7745f;
+$color3: #fde635;
+$color4: #555555;
+
+.profile-view-container {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+.details-box {
+    margin-top: 2rem;
+  outline-color: $color2;
+
+}
+
+.form-box {
+    margin-top: 2rem;
+}
+
+.delete-button-box {
+    margin-top: 2rem;
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+
+.favorites-container {
+    
+    margin-top: 2rem !important;
+}
+
+.favorites-cards-container {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+
+.profile-favorite-card {
+    width: 18rem;
+    height: auto;
+    margin: 1rem;
+    justify-content: 'space-between';
+    align-content: center;
+    
+}
+
+.favorites-card-body {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-end !important;
+
+}
+

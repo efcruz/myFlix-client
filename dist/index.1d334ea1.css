@@ -1,0 +1,168 @@
+
+.error-message {
+  font-size: 12px;
+  color: red;
+}
+.card-movie-card {
+  height: 750px;
+  margin-bottom: 30px;
+  justify-content: "space-between";
+  align-content: center;
+}
+
+.card-title {
+  font-weight: 700 !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-weight: 400 !important;
+}
+.movie-view-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*.movie-view-text-container {
+  margin-bottom: 2rem !important;
+}*/
+.movie-view-poster-container {
+  margin-bottom: 2rem !important;
+}
+
+.movie-view-poster {
+  max-width: 100%;
+  min-width: 10rem;
+  height: auto;
+  margin: 0rem;
+}
+
+.btn-outline {
+  border-color: none !important;
+  color: #e7745f !important;
+  text-decoration: none !important;
+  margin: none;
+}
+
+.btn-outline:hover {
+  background-color: none !important;
+  color: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  border-color: none !important;
+}
+
+.movie-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.movie-description {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.value-link {
+  color: #e7745f !important;
+}
+.director-view-poster {
+  max-width: 100%;
+  min-width: 10rem;
+  height: auto;
+  margin: 0rem;
+}
+
+.director-view-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.director-view-poster-container {
+  margin: 0.5rem;
+}
+
+.director-view-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.profile-view-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-box {
+  margin-top: 2rem;
+  outline-color: #e7745f;
+}
+
+.form-box {
+  margin-top: 2rem;
+}
+
+.delete-button-box {
+  margin-top: 2rem;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.favorites-container {
+  margin-top: 2rem !important;
+}
+
+.favorites-cards-container {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.profile-favorite-card {
+  width: 18rem;
+  height: auto;
+  margin: 1rem;
+  justify-content: "space-between";
+  align-content: center;
+}
+
+.favorites-card-body {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end !important;
+}
+.link {
+  color: #e7745f !important;
+}
+/*.main-view-container {
+  background-color: rgb(91, 50, 204);
+}*/
+.login-card {
+  margin-top: 30px;
+}
+body {
+  padding-top: 6rem;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  color: #555555 !important;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  color: white !important;
+  background-color: #e7745f !important;
+  border-color: #e7745f !important;
+}
+/*# sourceMappingURL=index.1d334ea1.css.map */

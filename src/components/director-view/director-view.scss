@@ -1,0 +1,23 @@
+.director-view-poster {
+    max-width: 100%;
+    min-width: 10rem;
+    height: auto;
+    margin: 0rem;
+}
+
+.director-view-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.director-view-poster-container {
+    
+    margin: 0.5rem;
+}
+
+.director-view-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0.5rem;
+}

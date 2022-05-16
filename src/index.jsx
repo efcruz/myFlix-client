@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
 
 //Fixing "ReactDOM.render is no longer supported in React 18"
 /*import App from 'App';*/
@@ -18,11 +20,13 @@ import './index.scss';
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {
-    render() {
-        return (
-            <MainView />
-        );
-    }
+  render() {
+    return (
+      <Container>
+        <MainView />
+      </Container>
+    );
+  }
 }
 
 // Finds the root of your app
