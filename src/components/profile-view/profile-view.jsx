@@ -97,6 +97,7 @@ debugger;
             alert('Profile deleted');
             localStorage.removeItem("user");
             localStorage.removeItem("token");
+            window.open('/', '_self');
         })
         .catch((e) => {
             console.log(e)
