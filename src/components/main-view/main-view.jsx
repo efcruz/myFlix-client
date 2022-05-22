@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Card, CardGroup, Container } from 'react-bootstrap';
@@ -13,14 +14,18 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { NavbarView } from '../navbar/navbar-view';
+
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+
+
 import './main-view.scss';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     //create the component
     super(); //initializes the component’s state
     this.state = {
-      movies: [],
       user: null
     };
   }
@@ -33,11 +38,11 @@ export class MainView extends React.Component {
       })
       .then((response) => {
         //Asign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        this.props.setMovies(response.data);
       })
+      
       .catch((error) => {
+        
         console.log(error);
       });
   }
@@ -69,7 +74,9 @@ export class MainView extends React.Component {
   
 
   render() {
-    const { movies, user } = this.state;
+    const { movies } = this.props;
+    const { user } = this.state;
+
       return (
         <Router>
           <NavbarView user={user} />
@@ -85,12 +92,13 @@ export class MainView extends React.Component {
                     </Col> );
                 
                 if (movies.length === 0) return <div className="main-view" />;
-                return movies.map(movie => (
-                  <Col md={3} key={movie._id}>
-                    <MovieCard movieData={movie} />
-                  </Col>
-                ))
-              }} />
+                
+                return <MoviesList movies={movies} />;
+               
+                  }} />
+                
+                
+                
 
               <Route path="/register" render={() => {
                 if (user) return <Redirect to="/" />
@@ -171,21 +179,23 @@ export class MainView extends React.Component {
     )
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
  
 MainView.propTypes = {
-  movies: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-    }).isRequired,
+  movies: PropTypes.array,
     Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string.isRequired,
-      Birth: PropTypes.string.isRequired,
-    }).isRequired,
-    ImagePath: PropTypes.string.isRequired,
-    Feature: PropTypes.bool.isRequired
-  })
-};
+      Name: PropTypes.string,
+      Bio: PropTypes.string,
+      Birth: PropTypes.string,
+    }),
+    ImagePath: PropTypes.string,
+    Feature: PropTypes.bool
+}
+
+
+export default  connect(mapStateToProps, { setMovies } )(MainView);
+
