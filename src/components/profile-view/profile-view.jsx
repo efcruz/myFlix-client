@@ -13,19 +13,18 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { setUser, updateUser } from "../../actions/actions";
+
 import './profile-view.scss';
 
 export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: null,
-            password: null,
-            email: null,
-            birthday: null,
             favoriteMovies: []
         };
-        this.removeFav = this.removeFav.bind(this);   
+        this.removeFav = this.removeFav.bind(this);
+        this.getUser = this.getUser.bind(this);  
     }
 
     getUser(token) {
@@ -34,7 +33,7 @@ export class ProfileView extends React.Component {
         { headers: { Authorization: `Bearer ${token}` } },
         )
         .then((response) => {
-            this.setState({
+            this.props.setUser({
                 username: response.data.Username,
                 password: response.data.Password,
                 email: response.data.Email,
@@ -56,10 +55,10 @@ export class ProfileView extends React.Component {
 
     editProfile = (e) => {
         e.preventDefault();
-        debugger;
+       
         const user = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-debugger;
+
         axios.put(`https://my-flix-movie-app.herokuapp.com/users/${user}`,
         {
           Username: this.state.username,
@@ -70,14 +69,14 @@ debugger;
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then((response) => {
-            debugger;
-            this.setState({
+           
+            this.props.updateUser({
                 username: response.data.Username,
                 password: response.data.Password,
                 email: response.data.Email,
                 birthday: response.data.Birthday,
             });
-            localStorage.setItem("user", this.state.username);
+            localStorage.setItem("user", response.data.username);
             alert("Profile updadted sucessfully");
         })
         .catch((e) => {
@@ -143,19 +142,19 @@ debugger;
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then ((response) => {
-            debugger;
+            
             console.log(response);
             this.updateLocalMovies(response.data.FavoriteMovies)
         })
         .catch((e) => {
-            debugger;
+           
             console.log(e)
         });
     }
         
     render() {
-        const { movies, onBackClick } = this.props;
-        const { favoriteMovies, username, password, email, birthday } = this.state;
+        const { movies } = this.props;
+        const { favoriteMovies, name, password, email, birthday } = this.props.user || [];
       
 
         if (!username) {

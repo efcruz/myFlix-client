@@ -23,7 +23,11 @@ import MainView from './components/main-view/main-view';
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
 
-const myFlixStore = createStore(moviesApp, devToolsEnhancer());
+const myFlixStore = createStore(moviesApp, devToolsEnhancer(
+  {trace: true}
+));
+
+/*const myFlixStore = createStore(moviesApp, devToolsEnhancer());*/
 
 myFlixStore.subscribe(() => console.log(myFlixStore.getState()));
 

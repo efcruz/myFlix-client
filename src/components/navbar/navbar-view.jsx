@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar,Button } from "react-bootstrap";
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './navbar-view.scss';
@@ -11,17 +12,12 @@ export function NavbarView({user}) {
         window.open("/", "_self");
       }
 
-      const isAuth = () => {
-        if(typeof window == "undefined") {
-          return false;
-        }
-        if(localStorage.getItem("token")) {
-          return localStorage.getItem("token");
-        } else {
-          return false;
-        }
-      };
-
+    const isAuth = () => {
+      if(typeof window == "undefined") {
+        return false;
+      }
+      return user !== null
+    };
 
     return (
         <Navbar className="main-nav" fixed="top" bg="dark" expand="lg" variant="dark">
@@ -31,8 +27,9 @@ export function NavbarView({user}) {
                   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
-                      {isAuth() && (
-                          <Nav.Link as={Link} to={`/users/${user}`} >{user}</Nav.Link>
+                      {
+                      isAuth() && (
+                          <Nav.Link as={Link} to={`/users/${user.user}`} >{user.user}</Nav.Link>
                       )}
                       {isAuth() && (
                         <Button className="link" variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>

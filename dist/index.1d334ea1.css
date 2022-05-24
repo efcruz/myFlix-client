@@ -3,23 +3,6 @@
   font-size: 12px;
   color: red;
 }
-.card-movie-card {
-  height: 750px;
-  margin-bottom: 30px;
-  justify-content: "space-between";
-  align-content: center;
-}
-
-.card-title {
-  font-weight: 700 !important;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  font-weight: 400 !important;
-}
 .movie-view-container {
   display: flex;
   justify-content: space-between;
@@ -145,6 +128,23 @@ h1 {
 }
 .link {
   color: #e7745f !important;
+}
+.card-movie-card {
+  height: 750px;
+  margin-bottom: 30px;
+  justify-content: "space-between";
+  align-content: center;
+}
+
+.card-title {
+  font-weight: 700 !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-weight: 400 !important;
 }
 /*.main-view-container {
   background-color: rgb(91, 50, 204);
