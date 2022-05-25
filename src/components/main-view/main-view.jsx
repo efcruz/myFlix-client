@@ -52,7 +52,7 @@ class MainView extends React.Component {
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null && accessToken !== 'undefined') {
-      debugger;
+      
       this.props.setUser({
         user: localStorage.getItem('user')
       });
@@ -70,7 +70,7 @@ class MainView extends React.Component {
       user: authData.user.Username
       
     });
-   debugger;
+   
     console.log(authData);
     
     localStorage.setItem('token', authData.token);
