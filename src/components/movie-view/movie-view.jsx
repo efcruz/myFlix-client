@@ -67,7 +67,7 @@ export class MovieView extends React.Component {
         )
         .then((response) => {
           console.log(response);
-          debugger;
+         
           this.setState({
             favoriteMovies: response.data.FavoriteMovies
           });

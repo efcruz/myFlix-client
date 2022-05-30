@@ -13,18 +13,19 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { setUser, updateUser } from "../../actions/actions";
-
 import './profile-view.scss';
 
 export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
+            username: null,
+            password: null,
+            email: null,
+            birthday: null,
             favoriteMovies: []
         };
-        this.removeFav = this.removeFav.bind(this);
-        this.getUser = this.getUser.bind(this);  
+        this.removeFav = this.removeFav.bind(this);   
     }
 
     getUser(token) {
@@ -33,7 +34,7 @@ export class ProfileView extends React.Component {
         { headers: { Authorization: `Bearer ${token}` } },
         )
         .then((response) => {
-            this.props.setUser({
+            this.setState({
                 username: response.data.Username,
                 password: response.data.Password,
                 email: response.data.Email,
@@ -69,14 +70,14 @@ export class ProfileView extends React.Component {
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then((response) => {
-           
-            this.props.updateUser({
+         
+            this.setState({
                 username: response.data.Username,
                 password: response.data.Password,
                 email: response.data.Email,
                 birthday: response.data.Birthday,
             });
-            localStorage.setItem("user", response.data.username);
+            localStorage.setItem("user", this.state.username);
             alert("Profile updadted sucessfully");
         })
         .catch((e) => {
@@ -142,19 +143,19 @@ export class ProfileView extends React.Component {
         { headers: { Authorization: `Bearer ${token}` } }
         )
         .then ((response) => {
-            
+            debugger;
             console.log(response);
             this.updateLocalMovies(response.data.FavoriteMovies)
         })
         .catch((e) => {
-           
+            debugger;
             console.log(e)
         });
     }
         
     render() {
-        const { movies } = this.props;
-        const { favoriteMovies, name, password, email, birthday } = this.props.user || [];
+        const { movies, onBackClick } = this.props;
+        const { favoriteMovies, username, password, email, birthday } = this.state;
       
 
         if (!username) {
@@ -180,6 +181,7 @@ export class ProfileView extends React.Component {
                                 left: '2'
                                   
                                 }}
+                                onClick={this.props.onBackClick}
                         >
                             Back
                         </Button>

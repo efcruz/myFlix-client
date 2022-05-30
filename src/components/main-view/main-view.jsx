@@ -15,7 +15,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { NavbarView } from '../navbar/navbar-view';
 
-import { setMovies, setUser } from '../../actions/actions';
+import { setMovies, setUser} from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 
@@ -25,6 +25,33 @@ class MainView extends React.Component {
   constructor() {
     //create the component
     super(); //initializes the component’s state
+  }
+
+  
+  //check if is there a token stored
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null && accessToken !== 'undefined') {
+      
+      const { setUser } = this.props;
+      setUser(localStorage.getItem('user'));
+      this.getMovies(accessToken);
+    }
+  }
+
+   //change state and store username and token
+   onLoggedIn(authData) {
+    const { setUser } = this.props;
+    setUser(authData.user.Username);
+
+    console.log(authData.user.Username);
+    console.log(authData);
+    
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    
+    this.getMovies(authData.token);
+   
   }
 
   
@@ -48,42 +75,11 @@ class MainView extends React.Component {
       });
   }
 
-  //check if is there a token stored
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null && accessToken !== 'undefined') {
-      
-      this.props.setUser({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-      
-      
-    }
-  }
-
-  //change state and store username and token
-  onLoggedIn(authData) {
-    console.log(authData.user.Username);
-    this.props.setUser({
-      
-      user: authData.user.Username
-      
-    });
-   
-    console.log(authData);
-    
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    
-    this.getMovies(authData.token);
-   
-  }
- 
-  
 
   render() {
     const { movies, user } = this.props;
+    console.log('user',user)
+    console.log(this.props)
       return (
         <Router>
           <NavbarView user={user} />
@@ -155,7 +151,7 @@ class MainView extends React.Component {
                   </Col> );
               }} />
 
-              <Route path={`/users/${user}`} render={({ match, history }) => {
+              <Route exact path={`/users/:name`} render={({ match, history }) => {
                 if (!user)
                   return (
                     <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
@@ -169,7 +165,7 @@ class MainView extends React.Component {
                         history={history}
                         movies={movies}
                         user={user}
-                        setUser={(user) => this.setUser(user)}
+                        
                         onBackClick={() => history.goBack()}
                       />
                     </Col>

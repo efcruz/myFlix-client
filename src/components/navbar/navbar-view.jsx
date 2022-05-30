@@ -12,6 +12,7 @@ export function NavbarView({user}) {
         window.open("/", "_self");
       }
 
+     
     const isAuth = () => {
       if(typeof window == "undefined") {
         return false;
@@ -29,7 +30,7 @@ export function NavbarView({user}) {
                     <Nav className="ml-auto">
                       {
                       isAuth() && (
-                          <Nav.Link as={Link} to={`/users/${user.user}`} >{user.user}</Nav.Link>
+                          <Nav.Link as={Link} to={`/users/${user.user}`} >{user}</Nav.Link>
                       )}
                       {isAuth() && (
                         <Button className="link" variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>
