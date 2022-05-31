@@ -130,7 +130,7 @@ h1 {
   color: #e7745f !important;
 }
 .card-movie-card {
-  height: 750px;
+  min-height: 750px;
   margin-bottom: 30px;
   justify-content: "space-between";
   align-content: center;
