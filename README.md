@@ -1,4 +1,4 @@
-# myFlix App - Client - this is a test
+# myFlix App - Client
 
 ## Description
 
