@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Using React, build the client-side for an application called myFlix based on its existing server-side code (REST API and database).",
   "default": "index.html",
+  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
