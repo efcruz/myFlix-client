@@ -6,7 +6,7 @@
   "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index"
+    "start": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
